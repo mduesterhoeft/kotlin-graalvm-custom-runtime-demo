@@ -20,10 +20,14 @@ tasks.withType<ShadowJar> {
 }
 val http4kVersion = "3.103.2"
 dependencies {
+
     compile(kotlin("stdlib-jdk8"))
+    compile(kotlin("reflect"))
     compile("org.http4k:http4k-core:$http4kVersion")
     //compile("org.http4k:http4k-client-okhttp:$http4kVersion")
     compile("org.http4k:http4k-format-jackson:$http4kVersion")
+
+    testCompile("org.junit.jupiter:junit-jupiter-engine:5.3.2")
 }
 
 tasks.withType<KotlinCompile> {

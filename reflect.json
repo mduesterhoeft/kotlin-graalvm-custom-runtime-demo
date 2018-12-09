@@ -1,0 +1,16 @@
+[
+  {
+    "name": "com.github.md.ApiGatewayProxyRequest",
+    "allPublicConstructors" : true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "java.util.LinkedHashMap",
+    "allPublicConstructors" : true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "com.github.md.ApiGatewayProxyResponse",
+    "allPublicMethods": true
+  }
+]
