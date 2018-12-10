@@ -1,6 +1,6 @@
 ./gradlew shadowJar
 
-docker run --rm --name graal -v $(pwd):/working oracle/graalvm-ce:1.0.0-rc8 \
+docker run --rm --name graal -v $(pwd):/working oracle/graalvm-ce:1.0.0-rc10 \
     /bin/bash -c "native-image --enable-url-protocols=http \
                     -Djava.net.preferIPv4Stack=true \
                     -H:ReflectionConfigurationFiles=/working/reflect.json \
