@@ -1,7 +1,3 @@
-# Fighting cold startup issues for your Kotlin Lambda with GraalVM
+## Fighting cold startup issues for your Kotlin Lambda with GraalVM
 
----
-
-## Motivation 
-
-![](slides/motivation.png)
+---?image=slides/motivation.png&position=center&size=auto

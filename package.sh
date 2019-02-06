@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 ./gradlew shadowJar
 
 docker run --rm --name graal -v $(pwd):/working oracle/graalvm-ce:1.0.0-rc10 \
