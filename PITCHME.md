@@ -3,3 +3,5 @@
 ---
 
 ## Motivation 
+
+![](slides/motivation.png)
