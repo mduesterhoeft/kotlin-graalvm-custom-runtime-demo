@@ -17,13 +17,24 @@ import org.http4k.core.toUrlFormEncoded
 import org.http4k.routing.bind
 import org.http4k.routing.path
 import org.http4k.routing.routes
+import software.amazon.awssdk.services.dynamodb.DynamoDbClient
+import software.amazon.awssdk.services.dynamodb.model.AttributeValue
+import software.amazon.awssdk.services.dynamodb.model.PutItemRequest
 import java.io.PrintWriter
 import java.io.StringWriter
+import java.util.UUID
 
 val routes: HttpHandler = routes(
     "/ping" bind GET to { Response(OK).body("""{"ping": "pong"}""") },
     "/greet/{name}" bind GET to { req: Request ->
         val path: String? = req.path("name")
+        val response = dynamoClient.putItem(
+            PutItemRequest.builder()
+                .tableName("names1")
+                .item(mutableMapOf(
+                    "id" to AttributeValue.builder().s(UUID.randomUUID().toString()).build(),
+                    "name" to AttributeValue.builder().s(path).build()
+                )).build())
         Response(OK).body("""{ "greeting": "hello $path"}""")
     }
 )
@@ -33,6 +44,8 @@ const val requestIdHeaderName = "lambda-runtime-aws-request-id"
 val client: HttpHandler = JavaHttpClient()
 
 val json = jacksonObjectMapper().disable(FAIL_ON_UNKNOWN_PROPERTIES)
+
+var dynamoClient = DynamoDbClient.create()
 
 fun main(args: Array<String>) {
     eventLoop {runtimeApiEndpoint ->

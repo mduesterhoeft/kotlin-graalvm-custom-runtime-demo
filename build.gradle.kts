@@ -26,6 +26,7 @@ dependencies {
     compile("org.http4k:http4k-core:$http4kVersion")
     //compile("org.http4k:http4k-client-okhttp:$http4kVersion")
     compile("org.http4k:http4k-format-jackson:$http4kVersion")
+    compile("software.amazon.awssdk:dynamodb:2.2.0")
 
     testCompile("org.junit.jupiter:junit-jupiter-engine:5.3.2")
 }

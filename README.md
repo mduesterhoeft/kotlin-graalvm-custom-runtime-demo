@@ -1,8 +1,8 @@
 # AWS lambda with Kotlin and GraalVM
 
-This project demonstrates how to run a Kotlin serverless function on AWS lambda using GraalVM
-It takes advantage of the  [custom lambda runtime](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html) to be able to use GraalVM to run the function.
-This avoids the increased latency on cold startup.
+This project demonstrates how to run a Kotlin function on AWS Lambda using GraalVM.
+It takes advantage of the  [custom lambda runtime](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html) to run a native machine image created by GraalVM.
+Running a native image reduces the cold startup times significantly.
 
 Run the `package.sh` to create a deployable zip file. This script does the following:
 

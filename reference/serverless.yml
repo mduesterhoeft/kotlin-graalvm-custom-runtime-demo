@@ -1,4 +1,4 @@
-service: kotlin-graalvm-custom-runtime-demo
+service: kotlin-graalvm-custom-runtime-reference # NOTE: update this with your service name
 
 provider:
   name: aws
@@ -12,23 +12,22 @@ provider:
         - "dynamodb:PutItem"
 
 package:
-  artifact: build/package/bundle.zip
+  artifact: build/libs/hello-dev-all.jar
 
 functions:
   hello:
-    handler: not.used
-    runtime: provided
+    handler: com.serverless.Handler
     events:
-      - http:
-          path: /greet/{name}
-          method: get
+    - http:
+        path: /greet/{name}
+        method: get
 
 resources:  # CloudFormation template syntax
   Resources:
     usersTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: names1
+        TableName: names
         BillingMode: PAY_PER_REQUEST
         AttributeDefinitions:
           - AttributeName: id
