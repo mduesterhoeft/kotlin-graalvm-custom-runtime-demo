@@ -24,9 +24,11 @@ dependencies {
     compile(kotlin("stdlib-jdk8"))
     compile(kotlin("reflect"))
     compile("org.http4k:http4k-core:$http4kVersion")
+    compile("org.slf4j:slf4j-log4j12:1.7.9")
     //compile("org.http4k:http4k-client-okhttp:$http4kVersion")
     compile("org.http4k:http4k-format-jackson:$http4kVersion")
     compile("software.amazon.awssdk:dynamodb:2.2.0")
+    compileOnly("com.oracle.substratevm:svm:1.0.0-rc12")
 
     testCompile("org.junit.jupiter:junit-jupiter-engine:5.3.2")
 }

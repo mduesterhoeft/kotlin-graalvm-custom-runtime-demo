@@ -24,6 +24,7 @@ import java.io.PrintWriter
 import java.io.StringWriter
 import java.util.UUID
 
+
 val routes: HttpHandler = routes(
     "/ping" bind GET to { Response(OK).body("""{"ping": "pong"}""") },
     "/greet/{name}" bind GET to { req: Request ->
@@ -47,7 +48,9 @@ val json = jacksonObjectMapper().disable(FAIL_ON_UNKNOWN_PROPERTIES)
 
 var dynamoClient = DynamoDbClient.create()
 
-fun main(args: Array<String>) {
+fun main() {
+    System.setProperty("javax.net.ssl.trustStore","cacerts");
+    System.setProperty("javax.net.ssl.trustStorePassword", "changeit");
     eventLoop {runtimeApiEndpoint ->
         getInvocation(runtimeApiEndpoint)
             .executeHandlerAndPostResult()

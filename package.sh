@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 ./gradlew shadowJar
 
-docker run --rm --name graal -v $(pwd):/working oracle/graalvm-ce:1.0.0-rc10 \
-    /bin/bash -c "native-image --enable-url-protocols=http \
+rm -rf build/package
+mkdir build/package
+
+docker run --rm --name graal -v $(pwd):/working oracle/graalvm-ce:1.0.0-rc12 \
+    /bin/bash -c "native-image --enable-http --enable-https --enable-url-protocols=http,https --enable-all-security-services \
                     -Djava.net.preferIPv4Stack=true \
                     -H:ReflectionConfigurationFiles=/working/reflect.json \
+                    -H:DynamicProxyConfigurationFiles=/working/proxy-conf.json \
+                    --delay-class-initialization-to-runtime=com.github.md.ApplicationKt \
                     --delay-class-initialization-to-runtime=software.amazon.awssdk.awscore.client.builder.AwsDefaultClientBuilder \
                     --delay-class-initialization-to-runtime=software.amazon.awssdk.auth.signer.internal.AbstractAws4Signer \
                     --delay-class-initialization-to-runtime=software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider \
@@ -27,13 +32,10 @@ docker run --rm --name graal -v $(pwd):/working oracle/graalvm-ce:1.0.0-rc10 \
                     --delay-class-initialization-to-runtime=software.amazon.awssdk.profiles.internal.ProfileFileReader \
                     -H:+ReportUnsupportedElementsAtRuntime --no-server -jar /working/build/libs/kotlin-graalvm-custom-runtime-demo-1.0-all.jar \
                     ; \
-                    cp kotlin-graalvm-custom-runtime-demo-1.0-all /working/build/server"
+                    cp kotlin-graalvm-custom-runtime-demo-1.0-all /working/build/package/server; \
+                    cp /opt/graalvm-ce-1.0.0-rc12/jre/lib/security/cacerts /working/build/package/cacerts; \
+                    cp /opt/graalvm-ce-1.0.0-rc12/jre/lib/amd64/libsunec.so /working/build/package/libsunec.so"
 
-rm -rf build/package
-mkdir build/package
+cp runtime/* build/package
 
-cp build/server build/package
-
-cp runtime/bootstrap build/package
-
-zip -j build/package/bundle.zip build/package/bootstrap build/package/server
+zip -j build/package/bundle.zip build/package/*
