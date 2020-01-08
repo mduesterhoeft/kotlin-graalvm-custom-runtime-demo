@@ -2,8 +2,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
-    kotlin("jvm") version "1.3.10"
-    id("com.github.johnrengelman.shadow") version "4.0.3"
+    kotlin("jvm") version "1.3.61"
+    id("com.github.johnrengelman.shadow") version "5.1.0"
 }
 
 group = "com.github.md"
@@ -18,7 +18,7 @@ tasks.withType<ShadowJar> {
         attributes(mapOf("Main-Class" to "com.github.md.ApplicationKt"))
     }
 }
-val http4kVersion = "3.103.2"
+val http4kVersion = "3.207.0"
 dependencies {
 
     compile(kotlin("stdlib-jdk8"))
@@ -31,5 +31,5 @@ dependencies {
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.jvmTarget = "11"
 }

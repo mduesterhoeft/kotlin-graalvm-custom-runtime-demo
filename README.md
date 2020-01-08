@@ -4,7 +4,7 @@ This project demonstrates how to run a Kotlin serverless function on AWS lambda 
 It takes advantage of the  [custom lambda runtime](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html) to be able to use GraalVM to run the function.
 This avoids the increased latency on cold startup.
 
-Read the post belonging to this repo - https://medium.com/@mathiasdpunkt/fighting-cold-startup-issues-for-your-kotlin-lambda-with-graalvm-39d19b297730
+For more information read the post belonging to this repo - https://medium.com/@mathiasdpunkt/fighting-cold-startup-issues-for-your-kotlin-lambda-with-graalvm-39d19b297730
 
 Run the `package.sh` to create a deployable zip file. This script does the following:
 
@@ -18,4 +18,10 @@ So to package and deploy run:
 
 ```
 ./package.sh && sls deploy
+```
+
+To run the function:
+
+```
+curl  https://<your-api-id-here>.execute-api.eu-central-1.amazonaws.com/dev/greet/some
 ```
