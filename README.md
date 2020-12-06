@@ -17,7 +17,9 @@ We are using the [serverless framework](https://serverless.com/) to deploy the f
 So to package and deploy run:
 
 ```
-./package.sh && sls deploy
+npm install
+./package.sh
+npx serverless deploy
 ```
 
 To call the endpoint run:
@@ -29,6 +31,6 @@ curl  https://<your-api-id-here>.execute-api.eu-central-1.amazonaws.com/dev/gree
 After calling the function we can look at the logs to get information about the execution time.
 
 ```
-serverless logs -f hello
+npx serverless logs -f hello
 #REPORT RequestId: 155aa77e-6f07-4f31-a468-6de06edfd98b  Duration: 23.85 ms      Billed Duration: 300 ms Memory Size: 1024 MB    Max Memory Used: 66 MB  Init Duration: 178.22 ms     
 ```

@@ -1,3 +1,4 @@
+
 *.class
 target
 /bin/
@@ -16,3 +17,5 @@ target
 build/
 .gradle/
 *.iml
+
+node_modules/

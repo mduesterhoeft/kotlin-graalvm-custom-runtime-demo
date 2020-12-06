@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ./gradlew shadowJar
 
-docker run --rm --name graal -v $(pwd):/working oracle/graalvm-ce:19.3.0.2-java11 \
+docker run --rm --name graal -v $(pwd):/working oracle/graalvm-ce:20.3.0-java11 \
     /bin/bash -c "
                     gu install native-image; \
                     native-image --enable-url-protocols=http \
