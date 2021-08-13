@@ -1,4 +1,4 @@
-# AWS lambda with Kotlin and GraalVM
+# AWS Lambda with Kotlin and GraalVM
 
 This project demonstrates how to run a Kotlin serverless function on AWS lambda using GraalVM
 It takes advantage of the  [custom lambda runtime](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html) to be able to use GraalVM to run the function.
